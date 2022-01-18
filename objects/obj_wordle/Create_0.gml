@@ -110607,11 +110607,12 @@ ds_list_add(words2,
 	"ושהאח",
 	"לוגית",
 	"בתרסח",
+	"סוכון",
 )
 
 randomize() // replace with date based randomizer
 
-wordbank = choose(0, 1)
+var wordbank = choose(0, 1)
 if wordbank == 0 {
 	var num = irandom_range(0, ds_list_size(words))
 	chosenword = words[| num]
@@ -110624,7 +110625,8 @@ else {
 
 isinlist = false
 
-typingword = ""
+typingword = [""]
+typingwordstring = ""
 displaytimer = 0
 
 
