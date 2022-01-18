@@ -23913,7 +23913,6 @@ ds_list_add(words,
 	"שישלם",
 	"בשטיח",
 	"ונציב",
-	"לזיין",
 	"ששקעה",
 	"רניום",
 	"הסורר",
@@ -34466,7 +34465,6 @@ ds_list_add(words,
 	"וצואה",
 	"שמודד",
 	"הרצון",
-	"אזיין",
 	"ברונט",
 	"אביאם",
 	"האורל",
@@ -58702,7 +58700,6 @@ ds_list_add(words2,
 	"סקרבר",
 	"דאבני",
 	"תורתן",
-	"תזיין",
 	"לבתלן",
 	"האוהל",
 	"לבלעם",
@@ -89194,7 +89191,6 @@ ds_list_add(words2,
 	"יאדים",
 	"לבאלו",
 	"שסוזט",
-	"הזיין",
 	"וקיפס",
 	"לנועם",
 	"מכרום",
@@ -108280,7 +108276,6 @@ ds_list_add(words2,
 	"לנויז",
 	"בתטעם",
 	"שהוטו",
-	"מזיין",
 	"מתיאס",
 	"הולמר",
 	"בשנקר",
@@ -110624,10 +110619,14 @@ else {
 
 
 isinlist = false
-
-typingword = [""]
+canguess = true
+reveal = -1
+squareyscale = 1
+typingword = []
 typingwordstring = ""
+guesswordcorrect = []
 displaytimer = 0
+attempts = 6
 
-
+show_debug_message(chosenword)
 window_set_fullscreen(true)
