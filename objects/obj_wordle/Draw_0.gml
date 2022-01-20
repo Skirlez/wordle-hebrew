@@ -10,7 +10,7 @@ if array_length(typingword) < 5 and ord(keyboard_lastchar) >= 1488 and ord(keybo
 	keyboard_lastchar = ""
 }
 
-if array_length(typingword) > 0 and keyboard_check_pressed(vk_backspace) {
+if array_length(typingword) > 0 and keyboard_check_pressed(vk_backspace) and canguess == true {
 	array_delete(typingword, array_length(typingword) - 1, 1)
 }
 
@@ -22,7 +22,7 @@ var i = 0
 var m = 6 - attempts
 repeat(6 - m) {
 	repeat(5) {
-		if reveal == i and m == 6 - attempts {
+		if (reveal == i or revealall == true) and m == 6 - attempts {
 			
 			if squareyscale == -0.9 {
 				
@@ -50,8 +50,8 @@ repeat(6 - m) {
 			if i == 4
 				letter = converttoend(letter)
 			
-			if reveal == i
-				draw_text_transformed(372 - i * 26, 102 + m * 27 + (abs(squareyscale) - 1) * 11, letter, 1, abs(squareyscale), 0)
+			if (reveal == i or revealall == true)
+				draw_text_transformed(372 - i * 26, 102 + m * 27 + (abs(squareyscale) - 1) * 12, letter, 1, abs(squareyscale), 0)
 			else
 				draw_text_transformed(372 - i * 26, 102 + m * 27, letter, 1, 1, 0)
 		}
@@ -63,16 +63,18 @@ repeat(6 - m) {
 }
 
 
-if reveal != -1 {
+if reveal != -1 or revealall == true {
 	squareyscale -= 0.1	
 	if squareyscale == -1 {
 		squareyscale = 1
 		reveal += 1
 		if reveal == 6 {
 			reveal = -1
-			canguess = true
-			attempts -= 1
 			typingword = []
+			attempts -= 1
+			if attempts != 0
+				canguess = true
+			revealall = false
 		}
 	}
 
@@ -84,6 +86,7 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 		isinlist = checkword(typingwordstring)
 		if isinlist == true {
 			var i = 0
+			guess_string = ""
 			repeat (5) {
 				if string_count(typingword[i], chosenword) == 0
 					guesswordcorrect[i] = 1
@@ -92,11 +95,21 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 				else
 					guesswordcorrect[i] = 2
 			
+				guess_string += string(guesswordcorrect[i])
 				i += 1
 			}
+			
+			
+			ini_open("board");
+			ini_write_string("board", "word" + string(6 - attempts), typingwordstring)
+			ini_write_string("board", "guess" + string(6 - attempts), guess_string)
+			ini_close()
 		
 			reveal = 0
 			canguess = false
+			var i = 0
+
+
 		}
 		else {
 			textpopup = "זאת אינו מילה"

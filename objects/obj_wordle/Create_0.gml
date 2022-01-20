@@ -99757,6 +99757,8 @@ ds_list_add(words2,
 	"רונוק",
 	"ושהאח",
 	"לוגית",
+	"מילול",
+	"סוכונ",
 )
 
 
@@ -102856,9 +102858,52 @@ ds_list_add(qualitywords,
 	"הכינו",
 
 )
+revealall = false
+attempts = 6
+date = date_create_datetime(current_year, current_month, current_day, 0, 0, 0)
+random_set_seed(date);
+ini_open("board");
+filedate = ini_read_real("date", "date", -1);
 
-randomize() // replace with date based randomizer
+if filedate == -1 
+	ini_write_real("date", "date", date)
 
+else {
+	datediff = date_compare_date(date, filedate)
+	
+	if datediff == 0 {
+		var i = 0;
+		repeat(6) {
+			if ini_key_exists("board", "word" + string(6 - attempts)) {
+				repeat(5) {			
+					j = instance_create_depth(372 - i * 26, 90 + (6 - attempts) * 27, depth + 1, obj_dummy)
+					guess = ini_read_string("board", "guess" + string(6 - attempts), "00000")
+					guess = string_char_at(guess, i + 1)
+					j.image_index = guess
+					
+					letter = ini_read_string("board", "word" + string(6 - attempts), "בדיקה")
+					letter = string_char_at(letter, i + 1)
+					
+					if i == 4
+						j.text = converttoend(letter)
+					else
+						j.text = letter
+					
+					i += 1
+				}
+			}
+			else
+				break;
+			attempts -= 1
+			i = 0
+		}
+	}
+	else {
+		ini_write_real("date", "date", date)
+	}
+}
+
+ini_close()
 var num = irandom_range(0, ds_list_size(qualitywords))
 chosenword = qualitywords[| num]
 
@@ -102866,13 +102911,12 @@ chosenword = qualitywords[| num]
 
 isinlist = false
 canguess = true
-reveal = -1
 squareyscale = 1
 typingword = []
 typingwordstring = ""
 guesswordcorrect = []
 displaytimer = 0
-attempts = 6
+reveal = -1
 textpopup = ""
 show_debug_message(chosenword)
 window_set_fullscreen(true)
