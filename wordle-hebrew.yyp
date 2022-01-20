@@ -1,7 +1,9 @@
 {
   "resources": [
+    {"id":{"name":"converttobegin","path":"scripts/converttobegin/converttobegin.yy",},"order":3,},
     {"id":{"name":"checkword","path":"scripts/checkword/checkword.yy",},"order":0,},
     {"id":{"name":"reversestring","path":"scripts/reversestring/reversestring.yy",},"order":1,},
+    {"id":{"name":"converttoend","path":"scripts/converttoend/converttoend.yy",},"order":2,},
     {"id":{"name":"narkistamSmall","path":"fonts/narkistamSmall/narkistamSmall.yy",},"order":1,},
     {"id":{"name":"obj_dummy","path":"objects/obj_dummy/obj_dummy.yy",},"order":1,},
     {"id":{"name":"spr_square","path":"sprites/spr_square/spr_square.yy",},"order":0,},

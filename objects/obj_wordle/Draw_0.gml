@@ -3,10 +3,10 @@ draw_set_font(narkistam)
 //draw_text(50, 50, rv(chosenword))
 draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
-
+draw_text(320, 50, rv("מֵלִּילִית"))
 
 if array_length(typingword) < 5 and ord(keyboard_lastchar) >= 1488 and ord(keyboard_lastchar) <= 1514 {
-	array_insert(typingword, array_length(typingword), keyboard_lastchar)
+	array_insert(typingword, array_length(typingword), converttobegin(keyboard_lastchar))
 	keyboard_lastchar = ""
 }
 
@@ -25,9 +25,13 @@ repeat(6 - m) {
 		if reveal == i and m == 6 - attempts {
 			
 			if squareyscale == -0.9 {
+				
 				j = instance_create_depth(372 - i * 26, 90 + m * 27, depth + 1, obj_dummy)
 				j.image_index = guesswordcorrect[i]
-				j.text = typingword[i]
+				if i == 4
+					j.text = converttoend(typingword[i])
+				else
+					j.text = typingword[i]
 			}
 			
 			
@@ -42,10 +46,14 @@ repeat(6 - m) {
 			draw_sprite(spr_square, 0, 372 - i * 26, 90 + m * 27)	
 			
 		if i < array_length(typingword) and m == 6 - attempts {
+			letter = typingword[i]
+			if i == 4
+				letter = converttoend(letter)
+			
 			if reveal == i
-				draw_text_transformed(372 - i * 26, 101 + m * 27 + (abs(squareyscale) - 1) * 11, typingword[i], 1, abs(squareyscale), 0)
+				draw_text_transformed(372 - i * 26, 102 + m * 27 + (abs(squareyscale) - 1) * 11, letter, 1, abs(squareyscale), 0)
 			else
-				draw_text(372 - i * 26, 101 + m * 27, typingword[i])
+				draw_text_transformed(372 - i * 26, 102 + m * 27, letter, 1, 1, 0)
 		}
 		i += 1
 	}

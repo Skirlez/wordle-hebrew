@@ -1,3 +1,3 @@
 draw_self()
 draw_set_font(narkistam)
-draw_text(x, y + 11, text)
+draw_text_transformed(x, y + 12, text, 1, 1, 0)
