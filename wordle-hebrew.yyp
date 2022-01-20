@@ -2,6 +2,7 @@
   "resources": [
     {"id":{"name":"converttobegin","path":"scripts/converttobegin/converttobegin.yy",},"order":3,},
     {"id":{"name":"checkword","path":"scripts/checkword/checkword.yy",},"order":0,},
+    {"id":{"name":"spr_whitepixel","path":"sprites/spr_whitepixel/spr_whitepixel.yy",},"order":1,},
     {"id":{"name":"reversestring","path":"scripts/reversestring/reversestring.yy",},"order":1,},
     {"id":{"name":"converttoend","path":"scripts/converttoend/converttoend.yy",},"order":2,},
     {"id":{"name":"narkistamSmall","path":"fonts/narkistamSmall/narkistamSmall.yy",},"order":1,},

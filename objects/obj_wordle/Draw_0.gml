@@ -3,7 +3,7 @@ draw_set_font(narkistam)
 //draw_text(50, 50, rv(chosenword))
 draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
-draw_text(320, 50, rv("מֵלִּילִית"))
+draw_text(320, 25, rv("מלילית"))
 
 if array_length(typingword) < 5 and ord(keyboard_lastchar) >= 1488 and ord(keyboard_lastchar) <= 1514 {
 	array_insert(typingword, array_length(typingword), converttobegin(keyboard_lastchar))
