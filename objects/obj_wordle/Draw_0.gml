@@ -5,6 +5,9 @@ draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 draw_text(320, 25, rv("מלילית"))
 
+if canguess == false or endgame == true
+	keyboard_lastchar = ""
+	
 if array_length(typingword) < 5 and ord(keyboard_lastchar) >= 1488 and ord(keyboard_lastchar) <= 1514 {
 	array_insert(typingword, array_length(typingword), converttobegin(keyboard_lastchar))
 	keyboard_lastchar = ""
@@ -72,9 +75,15 @@ if reveal != -1 or revealall == true {
 			reveal = -1
 			typingword = []
 			attempts -= 1
-			if attempts != 0
+			
+			// you could probably not do it like this but I am tired
+			if guess_string == "33333" 
+				endgame = true	
+			else if attempts != 0
 				canguess = true
-			revealall = false
+			else
+				endgame = true	
+			
 		}
 	}
 
@@ -99,10 +108,15 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 				i += 1
 			}
 			
-			
 			ini_open("board");
 			ini_write_string("board", "word" + string(6 - attempts), typingwordstring)
 			ini_write_string("board", "guess" + string(6 - attempts), guess_string)
+			
+			if guess_string == "33333" {
+				currentwins = ini_read_real("meta", "wins", 0)
+				ini_write_real("meta", "wins", currentwins + 1)
+			}
+			
 			ini_close()
 		
 			reveal = 0

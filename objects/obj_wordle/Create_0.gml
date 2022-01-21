@@ -102860,13 +102860,14 @@ ds_list_add(qualitywords,
 )
 revealall = false
 attempts = 6
+endgame = false
 date = date_create_datetime(current_year, current_month, current_day, 0, 0, 0)
 random_set_seed(date);
 ini_open("board");
-filedate = ini_read_real("date", "date", -1);
+filedate = ini_read_real("meta", "date", -1);
 
 if filedate == -1 
-	ini_write_real("date", "date", date)
+	ini_write_real("meta", "date", date)
 
 else {
 	datediff = date_compare_date(date, filedate)
@@ -102878,6 +102879,8 @@ else {
 				repeat(5) {			
 					j = instance_create_depth(372 - i * 26, 90 + (6 - attempts) * 27, depth + 1, obj_dummy)
 					guess = ini_read_string("board", "guess" + string(6 - attempts), "00000")
+					if guess == "33333"
+						endgame = true
 					guess = string_char_at(guess, i + 1)
 					j.image_index = guess
 					
@@ -102899,7 +102902,7 @@ else {
 		}
 	}
 	else {
-		ini_write_real("date", "date", date)
+		ini_write_real("meta", "date", date)
 	}
 }
 
