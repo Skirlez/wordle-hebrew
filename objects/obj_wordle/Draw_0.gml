@@ -5,17 +5,55 @@ draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 draw_text(320, 25, rv("מלילית"))
 
+
+
 if canguess == false or endgame == true
 	keyboard_lastchar = ""
 	
-if array_length(typingword) < 5 and ord(keyboard_lastchar) >= 1488 and ord(keyboard_lastchar) <= 1514 {
-	array_insert(typingword, array_length(typingword), converttobegin(keyboard_lastchar))
+keyboardchar = keyboard_lastchar
+	
+if mouse_check_button_pressed(mb_left) {
+	var key = instance_position(mouse_x, mouse_y, obj_key)
+	if key != noone {
+		switch key.special {
+			case 0:
+				keyboardchar = key.text
+				break;
+				
+			case 1:
+				keyboard_key_press(vk_enter)
+				keyboard_key_release(vk_enter)
+				break;
+			
+			case 2:
+				keyboard_key_press(vk_backspace)
+				keyboard_key_release(vk_backspace)
+				break;
+		}
+	}
+	
+}	
+
+
+
+if array_length(typingword) < 5 and ord(keyboardchar) >= 1488 and ord(keyboardchar) <= 1514 {
+	array_insert(typingword, array_length(typingword), converttobegin(keyboardchar))
 	keyboard_lastchar = ""
+
 }
+
 
 if array_length(typingword) > 0 and keyboard_check_pressed(vk_backspace) and canguess == true {
 	array_delete(typingword, array_length(typingword) - 1, 1)
 }
+
+var arrlength = array_length(typingword)
+if arrlength == 4
+	global.keyboardmode = 1
+else if  arrlength == 5
+	global.keyboardmode = 2
+else
+	global.keyboardmode = 0
 
 for (var i = 0; i < array_length(typingword); i++)
 	typingwordstring += typingword[i]
@@ -25,7 +63,7 @@ var i = 0
 var m = 6 - attempts
 repeat(6 - m) {
 	repeat(5) {
-		if (reveal == i or revealall == true) and m == 6 - attempts {
+		if (reveal == i) and m == 6 - attempts {
 			
 			if squareyscale == -0.9 {
 				
@@ -35,6 +73,9 @@ repeat(6 - m) {
 					j.text = converttoend(typingword[i])
 				else
 					j.text = typingword[i]
+					
+				global.revealed = typingword[i]
+				global.revealstatus = guesswordcorrect[i]
 			}
 			
 			
@@ -53,7 +94,7 @@ repeat(6 - m) {
 			if i == 4
 				letter = converttoend(letter)
 			
-			if (reveal == i or revealall == true)
+			if (reveal == i)
 				draw_text_transformed(372 - i * 26, 102 + m * 27 + (abs(squareyscale) - 1) * 12, letter, 1, abs(squareyscale), 0)
 			else
 				draw_text_transformed(372 - i * 26, 102 + m * 27, letter, 1, 1, 0)
@@ -66,7 +107,7 @@ repeat(6 - m) {
 }
 
 
-if reveal != -1 or revealall == true {
+if reveal != -1 {
 	squareyscale -= 0.1	
 	if squareyscale == -1 {
 		squareyscale = 1
@@ -79,8 +120,9 @@ if reveal != -1 or revealall == true {
 			// you could probably not do it like this but I am tired
 			if guess_string == "33333" 
 				endgame = true	
-			else if attempts != 0
+			else if attempts != 0 {
 				canguess = true
+			}
 			else
 				endgame = true	
 			
@@ -94,6 +136,7 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 	if string_length(typingwordstring) == 5 {
 		isinlist = checkword(typingwordstring)
 		if isinlist == true {
+			global.keyboardmode = 2
 			var i = 0
 			guess_string = ""
 			repeat (5) {

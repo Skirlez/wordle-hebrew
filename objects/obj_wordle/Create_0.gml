@@ -37162,6 +37162,7 @@ ds_list_add(words,
 	"נלקינ",
 	"לקייה",
 	"ידרוכ",
+	"פחממה",
 	"ועמהמ",
 	"מוקצפ",
 	"ונמוג",
@@ -102856,11 +102857,15 @@ ds_list_add(qualitywords,
 	"הקימה",
 	"הזהיר",
 	"הכינו",
+	"פחממה",
 
 )
-revealall = false
 attempts = 6
 endgame = false
+keyboardchar = ""
+global.keyboardmode = 0
+global.revealed = ""
+global.revealstatus = 0
 date = date_create_datetime(current_year, current_month, current_day, 0, 0, 0)
 random_set_seed(date);
 ini_open("board");
@@ -102902,6 +102907,7 @@ else {
 		}
 	}
 	else {
+		ini_section_delete("board")
 		ini_write_real("meta", "date", date)
 	}
 }

@@ -2,16 +2,17 @@
   "resources": [
     {"id":{"name":"converttobegin","path":"scripts/converttobegin/converttobegin.yy",},"order":3,},
     {"id":{"name":"checkword","path":"scripts/checkword/checkword.yy",},"order":0,},
-    {"id":{"name":"obj_key","path":"objects/obj_key/obj_key.yy",},"order":2,},
+    {"id":{"name":"obj_key","path":"objects/obj_key/obj_key.yy",},"order":1,},
     {"id":{"name":"spr_whitepixel","path":"sprites/spr_whitepixel/spr_whitepixel.yy",},"order":1,},
     {"id":{"name":"reversestring","path":"scripts/reversestring/reversestring.yy",},"order":1,},
     {"id":{"name":"converttoend","path":"scripts/converttoend/converttoend.yy",},"order":2,},
     {"id":{"name":"narkistamSmall","path":"fonts/narkistamSmall/narkistamSmall.yy",},"order":1,},
-    {"id":{"name":"obj_dummy","path":"objects/obj_dummy/obj_dummy.yy",},"order":1,},
+    {"id":{"name":"obj_dummy","path":"objects/obj_dummy/obj_dummy.yy",},"order":0,},
+    {"id":{"name":"spr_keyboardkey","path":"sprites/spr_keyboardkey/spr_keyboardkey.yy",},"order":2,},
     {"id":{"name":"spr_square","path":"sprites/spr_square/spr_square.yy",},"order":0,},
     {"id":{"name":"narkistam","path":"fonts/narkistam/narkistam.yy",},"order":0,},
-    {"id":{"name":"obj_wordle","path":"objects/obj_wordle/obj_wordle.yy",},"order":0,},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
+    {"id":{"name":"obj_wordle","path":"objects/obj_wordle/obj_wordle.yy",},"order":2,},
+    {"id":{"name":"game","path":"rooms/game/game.yy",},"order":0,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},
@@ -28,7 +29,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"game","path":"rooms/game/game.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
