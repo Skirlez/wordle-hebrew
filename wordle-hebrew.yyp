@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"ClipboardObject","path":"objects/ClipboardObject/ClipboardObject.yy",},"order":3,},
     {"id":{"name":"converttobegin","path":"scripts/converttobegin/converttobegin.yy",},"order":3,},
     {"id":{"name":"checkword","path":"scripts/checkword/checkword.yy",},"order":0,},
     {"id":{"name":"obj_key","path":"objects/obj_key/obj_key.yy",},"order":1,},
@@ -11,6 +12,7 @@
     {"id":{"name":"spr_keyboardkey","path":"sprites/spr_keyboardkey/spr_keyboardkey.yy",},"order":2,},
     {"id":{"name":"spr_square","path":"sprites/spr_square/spr_square.yy",},"order":0,},
     {"id":{"name":"narkistam","path":"fonts/narkistam/narkistam.yy",},"order":0,},
+    {"id":{"name":"GMWebClipboard","path":"extensions/GMWebClipboard/GMWebClipboard.yy",},"order":0,},
     {"id":{"name":"obj_wordle","path":"objects/obj_wordle/obj_wordle.yy",},"order":2,},
     {"id":{"name":"game","path":"rooms/game/game.yy",},"order":0,},
   ],

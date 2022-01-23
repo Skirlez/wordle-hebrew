@@ -1,14 +1,23 @@
 draw_self()
 draw_set_font(narkistamSmall)
 
-if global.revealed == text
-	status = global.revealstatus
+if global.updatekeyboard == true {
+	var letteratwords = string_last_pos(text, global.words)
+	if letteratwords != 0 {
+		var result = string_char_at(global.guesses, letteratwords)
+		if result != "" {
+			result = int64(result)
+			if result > status
+				status = result
+		}
+	}
+
+}
 
 if global.keyboardmode == 2 
 	image_index = 1
 else
 	image_index = status
-
 
 switch (special) {
 	case 0:

@@ -7,8 +7,10 @@ draw_text(320, 25, rv("מלילית"))
 
 
 
-if canguess == false or endgame == true
-	keyboard_lastchar = ""
+if canguess == false or endgame == true {
+	keyboard_lastchar = ""	
+	keyboardchar = ""
+}
 	
 keyboardchar = keyboard_lastchar
 	
@@ -53,6 +55,9 @@ if arrlength >= 4
 else
 	global.keyboardmode = 0
 
+if canguess = false
+	global.keyboardmode = 0
+
 for (var i = 0; i < array_length(typingword); i++)
 	typingwordstring += typingword[i]
 
@@ -71,16 +76,19 @@ repeat(6 - m) {
 					j.text = converttoend(typingword[i])
 				else
 					j.text = typingword[i]
+				
+				
 					
-				global.revealed += typingword[i]
-				global.revealstatus += string(guesswordcorrect[i])
 			}
 			
 			
 			if squareyscale > 0
 				imgindex = 0
-			else
+			else {
+				if imgindex == 0
+					global.words += typingword[i]
 				imgindex = guesswordcorrect[i]
+			}
 			
 			draw_sprite_ext(spr_square, imgindex, 372 - i * 26, 90 + m * 27, 1, squareyscale, 0, c_white, 1)
 		}
@@ -110,11 +118,11 @@ if reveal != -1 {
 	if squareyscale == -1 {
 		squareyscale = 1
 		reveal += 1
-		if reveal == 6 {
+		if reveal == 5 {
 			reveal = -1
 			typingword = []
 			attempts -= 1
-			
+			global.updatekeyboard = false
 			// you could probably not do it like this but I am tired
 			if guess_string == "33333" 
 				endgame = true	
@@ -134,22 +142,32 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 	if string_length(typingwordstring) == 5 {
 		isinlist = checkword(typingwordstring)
 		if isinlist == true {
+			global.updatekeyboard = true
 			var i = 0
 			guess_string = ""
+			
 			repeat (5) {
-				if string_count(typingword[i], chosenword) == 0
+				lettercount = string_count(typingword[i], chosenword)
+				
+				if lettercount == 0
 					guesswordcorrect[i] = 1
 				else if typingword[i] == string_char_at(chosenword, i + 1)
 					guesswordcorrect[i] = 3
-				else
-					guesswordcorrect[i] = 2
+				else {
+					if lettercount > 1
+						guesswordcorrect[i] = 2
+					else
+						guesswordcorrect[i] = 1
+
+				}
 			
 				guess_string += string(guesswordcorrect[i])
 				i += 1
 			}
 			
-			ini_open("board");
 			
+			global.guesses += guess_string
+			ini_open("board");
 			var currentwords = ini_read_string("board", "words", "")
 			var currentguesses = ini_read_string("board", "guesses", "")
 			ini_write_string("board", "words", currentwords + typingwordstring)

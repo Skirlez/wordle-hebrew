@@ -102864,8 +102864,9 @@ attempts = 6
 endgame = false
 keyboardchar = ""
 global.keyboardmode = 0
-global.revealed = ""
-global.revealstatus = ""
+global.updatekeyboard = false
+global.words = ""
+global.guesses = ""
 date = date_create_datetime(current_year, current_month, current_day, 0, 0, 0)
 random_set_seed(date);
 ini_open("board");
@@ -102878,36 +102879,34 @@ else {
 	datediff = date_compare_date(date, filedate)
 	
 	if datediff == 0 {
-
+		var m = 0 // used for y position
+		var i = 0 // used for x position
+		var d = 0 // used for getting characters
 		global.guesses = ini_read_string("board", "guesses", "00000")
 		global.words = ini_read_string("board", "words", "בדיקה")
-		guess[0] = ""
-		word[0] = ""
-
-		repeat(6) {
-			if ini_key_exists("board", "word" + string(6 - attempts)) {
-				repeat(5) {			
-					j = instance_create_depth(372 - i * 26, 90 + (6 - attempts) * 27, depth + 1, obj_dummy)
-					if guess == "33333"
-						endgame = true
-					guess = string_char_at(guess, i + 1)
-					j.image_index = guess
+	
+		repeat(string_length(global.words)) {
+				j = instance_create_depth(372 - i * 26, 90 + (6 - attempts) * 27, depth + 1, obj_dummy)
+				if string_pos("33333", global.guesses) != 0
+					endgame = true
+				guess = string_char_at(global.guesses, d + 1)
+				j.image_index = guess
 					
-					letter = ini_read_string("board", "word" + string(6 - attempts), "בדיקה")
-					letter = string_char_at(letter, i + 1)
+				letter = string_char_at(global.words, d + 1)
 					
-					if i == 4
-						j.text = converttoend(letter)
-					else
-						j.text = letter
+				if i == 4
+					j.text = converttoend(letter)
+				else
+					j.text = letter
 					
-					i += 1
-				}
+				i += 1
+				d += 1
+				
+			if i % 5 == 0 {
+				m += 1
+				attempts -= 1
+				i = 0
 			}
-			else
-				break;
-			attempts -= 1
-			i = 0
 		}
 	}
 	else {
@@ -102933,3 +102932,4 @@ reveal = -1
 textpopup = ""
 show_debug_message(chosenword)
 window_set_fullscreen(true)
+room_speed = 60
