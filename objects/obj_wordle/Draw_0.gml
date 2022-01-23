@@ -48,10 +48,8 @@ if array_length(typingword) > 0 and keyboard_check_pressed(vk_backspace) and can
 }
 
 var arrlength = array_length(typingword)
-if arrlength == 4
+if arrlength >= 4
 	global.keyboardmode = 1
-else if  arrlength == 5
-	global.keyboardmode = 2
 else
 	global.keyboardmode = 0
 
@@ -74,8 +72,8 @@ repeat(6 - m) {
 				else
 					j.text = typingword[i]
 					
-				global.revealed = typingword[i]
-				global.revealstatus = guesswordcorrect[i]
+				global.revealed += typingword[i]
+				global.revealstatus += string(guesswordcorrect[i])
 			}
 			
 			
@@ -136,7 +134,6 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 	if string_length(typingwordstring) == 5 {
 		isinlist = checkword(typingwordstring)
 		if isinlist == true {
-			global.keyboardmode = 2
 			var i = 0
 			guess_string = ""
 			repeat (5) {
@@ -152,11 +149,14 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 			}
 			
 			ini_open("board");
-			ini_write_string("board", "word" + string(6 - attempts), typingwordstring)
-			ini_write_string("board", "guess" + string(6 - attempts), guess_string)
+			
+			var currentwords = ini_read_string("board", "words", "")
+			var currentguesses = ini_read_string("board", "guesses", "")
+			ini_write_string("board", "words", currentwords + typingwordstring)
+			ini_write_string("board", "guesses", currentguesses + guess_string)
 			
 			if guess_string == "33333" {
-				currentwins = ini_read_real("meta", "wins", 0)
+				var currentwins = ini_read_real("meta", "wins", 0)
 				ini_write_real("meta", "wins", currentwins + 1)
 			}
 			

@@ -5,7 +5,7 @@ if global.revealed == text
 	status = global.revealstatus
 
 if global.keyboardmode == 2 
-	image_index = 0	
+	image_index = 1
 else
 	image_index = status
 

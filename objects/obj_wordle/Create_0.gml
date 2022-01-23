@@ -102865,7 +102865,7 @@ endgame = false
 keyboardchar = ""
 global.keyboardmode = 0
 global.revealed = ""
-global.revealstatus = 0
+global.revealstatus = ""
 date = date_create_datetime(current_year, current_month, current_day, 0, 0, 0)
 random_set_seed(date);
 ini_open("board");
@@ -102878,12 +102878,16 @@ else {
 	datediff = date_compare_date(date, filedate)
 	
 	if datediff == 0 {
-		var i = 0;
+
+		global.guesses = ini_read_string("board", "guesses", "00000")
+		global.words = ini_read_string("board", "words", "בדיקה")
+		guess[0] = ""
+		word[0] = ""
+
 		repeat(6) {
 			if ini_key_exists("board", "word" + string(6 - attempts)) {
 				repeat(5) {			
 					j = instance_create_depth(372 - i * 26, 90 + (6 - attempts) * 27, depth + 1, obj_dummy)
-					guess = ini_read_string("board", "guess" + string(6 - attempts), "00000")
 					if guess == "33333"
 						endgame = true
 					guess = string_char_at(guess, i + 1)
