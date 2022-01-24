@@ -6,11 +6,6 @@ draw_set_valign(fa_middle)
 draw_text(320, 25, rv("מלילית"))
 
 
-
-if canguess == false or endgame == true {
-	keyboard_lastchar = ""	
-	keyboardchar = ""
-}
 	
 keyboardchar = keyboard_lastchar
 	
@@ -31,12 +26,31 @@ if mouse_check_button_pressed(mb_left) {
 				keyboard_key_press(vk_backspace)
 				keyboard_key_release(vk_backspace)
 				break;
+				
+			case 3:
+				global.showWindow = true
+				obj_end.show = true
+				break;
+			case 4:
+				global.showWindow = true
+				break;
+				
+			
+			
 		}
 	}
 	
 }	
 
+if mouse_check_button_pressed(mb_left) and position_meeting(mouse_x, mouse_y, obj_close) {
+	global.showWindow = false
+	obj_end.show = false
+}
 
+if canguess == false or endgame == true {
+	keyboard_lastchar = ""	
+	keyboardchar = ""
+}
 
 if array_length(typingword) < 5 and ord(keyboardchar) >= 1488 and ord(keyboardchar) <= 1514 {
 	array_insert(typingword, array_length(typingword), converttobegin(keyboardchar))
@@ -154,7 +168,7 @@ if keyboard_check_pressed(vk_enter) and canguess == true {
 				else if typingword[i] == string_char_at(chosenword, i + 1)
 					guesswordcorrect[i] = 3
 				else {
-					if lettercount > 1
+					if lettercount >= 1
 						guesswordcorrect[i] = 2
 					else
 						guesswordcorrect[i] = 1

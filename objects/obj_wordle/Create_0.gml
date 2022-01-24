@@ -102863,6 +102863,7 @@ ds_list_add(qualitywords,
 attempts = 6
 endgame = false
 keyboardchar = ""
+global.showWindow = false
 global.keyboardmode = 0
 global.updatekeyboard = false
 global.words = ""

@@ -1,7 +1,7 @@
 draw_self()
 draw_set_font(narkistamSmall)
 
-if global.updatekeyboard == true {
+if global.updatekeyboard == true and special == 0 {
 	var letteratwords = string_last_pos(text, global.words)
 	if letteratwords != 0 {
 		var result = string_char_at(global.guesses, letteratwords)
@@ -28,7 +28,12 @@ switch (special) {
 		break;
 	case 1:
 	case 2:
+	if obj_wordle.endgame == true
+		instance_destroy(id)
+	case 3:
+	case 4:
 		draw_text_transformed(x, y + 8, rv(text), 1, 1, 0)
 		break;
+	
 	
 }
