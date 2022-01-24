@@ -32,6 +32,7 @@ switch (special) {
 		instance_destroy(id)
 	case 3:
 	case 4:
+	case 5:
 		draw_text_transformed(x, y + 8, rv(text), 1, 1, 0)
 		break;
 	

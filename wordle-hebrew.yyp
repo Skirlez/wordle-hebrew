@@ -1,6 +1,6 @@
 {
   "resources": [
-    {"id":{"name":"obj_close","path":"objects/obj_close/obj_close.yy",},"order":5,},
+    {"id":{"name":"obj_close","path":"objects/obj_close/obj_close.yy",},"order":3,},
     {"id":{"name":"converttobegin","path":"scripts/converttobegin/converttobegin.yy",},"order":3,},
     {"id":{"name":"checkword","path":"scripts/checkword/checkword.yy",},"order":0,},
     {"id":{"name":"obj_key","path":"objects/obj_key/obj_key.yy",},"order":1,},
@@ -15,8 +15,8 @@
     {"id":{"name":"cool","path":"animcurves/cool/cool.yy",},"order":0,},
     {"id":{"name":"spr_square","path":"sprites/spr_square/spr_square.yy",},"order":0,},
     {"id":{"name":"narkistam","path":"fonts/narkistam/narkistam.yy",},"order":0,},
-    {"id":{"name":"obj_wordle","path":"objects/obj_wordle/obj_wordle.yy",},"order":2,},
-    {"id":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},"order":4,},
+    {"id":{"name":"obj_wordle","path":"objects/obj_wordle/obj_wordle.yy",},"order":4,},
+    {"id":{"name":"obj_text","path":"objects/obj_text/obj_text.yy",},"order":2,},
     {"id":{"name":"game","path":"rooms/game/game.yy",},"order":0,},
   ],
   "Options": [

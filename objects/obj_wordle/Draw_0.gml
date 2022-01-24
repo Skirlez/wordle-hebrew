@@ -34,8 +34,18 @@ if mouse_check_button_pressed(mb_left) {
 			case 4:
 				global.showWindow = true
 				break;
+			case 5:
+				clipboard = global.guesses
+				clipboard = string_replace_all(clipboard, "1", "⬛")
+				clipboard = string_replace_all(clipboard, "2", "🟨")
+				clipboard = string_replace_all(clipboard, "3", "🟩")
+				string_insert("\n", clipboard, 5)
+				string_insert("\n", clipboard, 10)
+				string_insert("\n", clipboard, 15)
+				string_insert("\n", clipboard, 20)
+				clipboard_set_text(clipboard)
 				
-			
+				break;
 			
 		}
 	}
