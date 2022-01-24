@@ -102883,8 +102883,8 @@ else {
 		var m = 0 // used for y position
 		var i = 0 // used for x position
 		var d = 0 // used for getting characters
-		global.guesses = ini_read_string("board", "guesses", "00000")
-		global.words = ini_read_string("board", "words", "בדיקה")
+		global.guesses = ini_read_string("board", "guesses", "")
+		global.words = ini_read_string("board", "words", "")
 	
 		repeat(string_length(global.words)) {
 				j = instance_create_depth(372 - i * 26, 90 + (6 - attempts) * 27, depth + 1, obj_dummy)

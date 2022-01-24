@@ -29,7 +29,7 @@ if mouse_check_button_pressed(mb_left) {
 				
 			case 3:
 				global.showWindow = true
-				obj_end.show = true
+				obj_text.show = true
 				break;
 			case 4:
 				global.showWindow = true
@@ -44,7 +44,7 @@ if mouse_check_button_pressed(mb_left) {
 
 if mouse_check_button_pressed(mb_left) and position_meeting(mouse_x, mouse_y, obj_close) {
 	global.showWindow = false
-	obj_end.show = false
+	obj_text.show = false
 }
 
 if canguess == false or endgame == true {
